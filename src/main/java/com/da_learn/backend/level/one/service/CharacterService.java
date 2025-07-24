@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CharacterService {
@@ -42,16 +43,11 @@ public class CharacterService {
         }
     }
 
-
-    //this isn't working currently - investigate
     @Transactional
-    public void newCharacter(String name) {
-        characterRepository.save(Character.builder().name(name).build());
-    }
-
-    @Transactional
-    public void saveCharacter(Character character) {
+    public Character saveCharacter(Character character) {
+        character.setId(UUID.randomUUID());
         characterRepository.save(character);
+        return character;
     }
 
     @Transactional

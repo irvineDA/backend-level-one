@@ -1,0 +1,19 @@
+networks:
+  backend-local:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:16.2
+    hostname: postgres
+    ports:
+     - "5432:5432"
+    environment:
+      POSTGRES_DB: backend_one
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+     - $HOME/docker/volumes/da-learn/postgres:/var/lib/postgresql/data
+    networks:
+     - backend-local

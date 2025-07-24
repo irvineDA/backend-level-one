@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,15 +34,11 @@ public class CharacterController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Void> saveCharacter(@RequestBody Character character) {
-        characterService.saveCharacter(character);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/new/{characterName}")
-    public ResponseEntity<Void> saveNewCharacter(@PathVariable String characterName) {
-        characterService.newCharacter(characterName);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Character> saveCharacter(@RequestBody Character character) {
+        Character created = characterService.saveCharacter(character);
+        return ResponseEntity.created(
+                        URI.create("/characters/new"))
+                .body(created);
     }
 
     @DeleteMapping("/delete/{characterName}")

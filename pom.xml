@@ -6,29 +6,20 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.da-learn</groupId>
-	<artifactId>backendLevel1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>level1</name>
+	<artifactId>backend-level-one</artifactId>
+	<name>backend-level-one</name>
 	<description>DA Learn - Level 1 Backend Pathway App </description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<version>latest</version>
+
 	<properties>
 		<java.version>21</java.version>
+		<flyway.postgres.version>10.15.0</flyway.postgres.version>
+		<hibernate.jpamodelgen.version>6.4.10.Final</hibernate.jpamodelgen.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -37,10 +28,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>
@@ -57,8 +44,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>RELEASE</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -67,9 +52,23 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>${hibernate.jpamodelgen.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.7.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-database-postgresql</artifactId>
+			<version>${flyway.postgres.version}</version>
 		</dependency>
 	</dependencies>
 

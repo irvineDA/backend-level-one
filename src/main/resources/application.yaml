@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  forward-headers-strategy: FRAMEWORK
+  servlet:
+    context-path: /${spring.application.name}
+  tomcat:
+    keep-alive-timeout: 20000
+spring:
+  application:
+    name: backend-level-one
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
+  docker:
+    compose:
+      file: "./docker-compose.local.yml"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/backend_one
+    username: postgres
+    password: docker
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: none
+        metamodel:
+          model:
+            function_contributors: com.da_learn.backend.config.postgres.PostgresFunctionsContributor
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+    baseline-on-migrate: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${hyperoptic.keycloak.url}/realms/${hyperoptic.keycloak.realm}/protocol/openid-connect/certs
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+  endpoint:
+    health.enabled: true

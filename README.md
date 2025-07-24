@@ -12,18 +12,6 @@ DROP DATABASE IF EXISTS backend_one;
 CREATE DATABASE backend_one;
 GRANT ALL ON DATABASE backend_one TO da_learn;
 
-CREATE TABLE character
-(
-id             UUID PRIMARY KEY,
-name           VARCHAR(255) NOT NULL,
-species        VARCHAR(255) NOT NULL,
-character_type VARCHAR(255) NOT NULL,
-origin_game    VARCHAR(255) NOT NULL,
-created_year   INT          NOT NULL
-);
-
-
-
 
 FLOW OF TUTOTIAL
 1) run the get - no characters
@@ -31,3 +19,12 @@ FLOW OF TUTOTIAL
 3) small post creates one - let them chose a character and pass it in request
 4) post to update fields with correct data for new character
 5) delete a character 
+
+TODO:
+- build up other endpoints
+- add validation/null handling 
+- refactor any code
+- add tests
+- tidy up readme
+- build out exploration instructions
+- duplicate repo - break the other repo?
