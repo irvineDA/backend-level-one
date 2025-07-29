@@ -1,13 +1,11 @@
 package com.da_learn.backend.level.one.controller;
 
+import com.da_learn.backend.level.one.model.CharacterEntity;
 import com.da_learn.backend.level.one.service.CharacterService;
-import com.da_learn.backend.level.one.model.Character;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,12 +16,12 @@ public class CharacterController {
     private final CharacterService characterService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Character>> getAllCharacters() {
+    public ResponseEntity<Iterable<CharacterEntity>> getAllCharacters() {
         return ResponseEntity.ok(characterService.getAllCharacters());
     }
 
     @GetMapping("/{characterName}")
-    public ResponseEntity<Character> getCharacterByName(@PathVariable String characterName) {
+    public ResponseEntity<CharacterEntity> getCharacterByName(@PathVariable String characterName) {
         return ResponseEntity.ok(characterService.getCharacter(characterName));
     }
 
@@ -34,11 +32,8 @@ public class CharacterController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Character> saveCharacter(@RequestBody Character character) {
-        Character created = characterService.saveCharacter(character);
-        return ResponseEntity.created(
-                        URI.create("/characters/new"))
-                .body(created);
+    public ResponseEntity<CharacterEntity> saveCharacter(@RequestBody CharacterEntity character) {
+        return ResponseEntity.ok(characterService.saveCharacter(character));
     }
 
     @DeleteMapping("/delete/{characterName}")
