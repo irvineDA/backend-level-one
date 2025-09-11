@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/characters")
@@ -33,7 +32,7 @@ public class CharacterController {
 
     @PostMapping("/new")
     public ResponseEntity<CharacterEntity> saveCharacter(@RequestBody CharacterEntity character) {
-        return ResponseEntity.ok(characterService.saveCharacter(character));
+        return ResponseEntity.status(201).body(characterService.saveCharacter(character));
     }
 
     @DeleteMapping("/delete/{characterName}")
@@ -48,4 +47,3 @@ public class CharacterController {
         return ResponseEntity.noContent().build();
     }
 }
-
