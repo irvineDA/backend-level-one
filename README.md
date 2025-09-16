@@ -102,7 +102,6 @@ mvn spring-boot:run
 
 
 TODO STILL:
-- add validation/null handling 
 - refactor any code
 - add tests
 - tidy up readme

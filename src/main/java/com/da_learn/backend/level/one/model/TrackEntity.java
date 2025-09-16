@@ -13,8 +13,8 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(name = "character")
-public class CharacterEntity {
+@Table(name = "track")
+public class TrackEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class CharacterEntity {
 
     private String name;
 
-    private String species;
+    private String cup;
 
-    private String character_type;
+    private String theme;
 
-    private String origin_game;
+    private Integer laps;
 
-    private Integer created_year;
+    private String difficulty;
 }
