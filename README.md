@@ -1,6 +1,6 @@
 # DA LEARN - Backend One
 
-## 🍄 Mario Character API
+## 🍄 Mario Kart API
 
 ## 🛠️ Getting Started
 
@@ -24,11 +24,11 @@ psql -U postgres -h localhost -d postgres
 
 #### Run the following SQL commands to set up the database and user:
 ```sql
-DROP ROLE IF EXISTS pact_service;
-CREATE ROLE pact_service WITH PASSWORD 'password' LOGIN CREATEDB;
-DROP DATABASE IF EXISTS pact_service;
-CREATE DATABASE pact_service;
-GRANT ALL ON DATABASE pact_service TO pact_service;
+DROP ROLE IF EXISTS da_learn;
+CREATE ROLE da_learn WITH PASSWORD 'password' LOGIN CREATEDB;
+DROP DATABASE IF EXISTS backend_one;
+CREATE DATABASE backend_one;
+GRANT ALL ON DATABASE backend_one TO da_learn;
 ```
 
 #### [OPTIONAL] DataGrip Connection:
@@ -39,6 +39,11 @@ GRANT ALL ON DATABASE pact_service TO pact_service;
 - Once satisfied, hit ``OK`` to create the connection.
 
 #### 🚨 Once finished - stop the postgres container
+
+--------
+### 📬 Postman Collection Setup
+TODO
+
 
 --------
 ### 🏗️ Build and Run the Application
@@ -60,8 +65,10 @@ mvn spring-boot:run
 
 
 --------
-### 🧭 Tutorial
+### 🧭 Tutorial 
 - Once the application is running locally and database set up, we can dive in!
+
+### PART 1: Spring Controllers
 
 #### 1️⃣ See Who's in the DB
 - Let’s check if any characters are already saved. On Postman, select the ``Get All Characters`` request and hit send.
@@ -99,9 +106,65 @@ mvn spring-boot:run
 - You should get a 204 response back indicating the character was successfully deleted.
 - Finally, run the request from 1️⃣ to check the character has indeed been deleted.
 
+#### 6️⃣ Add some tracks
+- Now we have our cast of characters sorted - lets get some tracks added for them to race.
+- In Postman, create from scratch an HTTP POST request to hit the endpoint that runs the method ``saveDefaultTracks()`` in ``TrackService``.
+- Store the request in the tracks folder in the postman collection.
+  - Hint: Make sure you include all path segments and if you get stuck, reference the corresponding request for the character table.
+
+#### 7️⃣ Explore the race truck CRUD endpoints
+- Just like before, you'll see in Postman we now have endpoints to retrieve, save and delete tracks.
+- Feel free to play around with deletes and retrievals.
+  - But ensure the default 8 tracks are in the DB by the end of this step.
+
+#### 8️⃣ Add 2 tracks of your own
+- Everyone has a track in Mario kart that they love (or hate).
+  - If you don't, do a quick google search for inspiration.
+- Fill in the empty request body values in the ``Save Track`` request in Postman and hit send.
+- By now we should have 10 tracks in the database... by my reckoning we have enough to simulate a grand prix.
+
+### CHECKPOINT:
+- Nice work! You've learnt lots and had plenty of hands on experience with CRUD operations in a Spring Boot application.
+- Before we proceed:
+  - Check you have 5 characters in the DB
+  - Check you have 10 tracks in the DB
+  - Check you're ready to get into some hardcore Java code.
+
+Ready? Let's go!
+
+### PART 2: Java Logic
 
 
-TODO STILL:
-- refactor any code
-- add tests
-- tidy up readme
+TODO:
+implement grandprix logic fully then remove bits // comment out so no compile issues
+- takes the characters, difficulty rating and tracks 
+- randomises the order of tracks and then for each track, randomises the order of characters
+- the order of characters will then be weighted to give characters points for winning
+- the points will then be totalled and the character with the most points at the end of the grand prix is winner
+- return a summary of the grand prix with winner
+
+json response will have 
+raceOutcomes:
+```json
+{
+  "grandPrixSummary": {
+    "winner": "Mario",
+    "totalPoints": 25
+  },
+  "raceOutcomes": [
+    {
+      "trackName": "Moo Moo Meadows",
+      "results": 
+        {
+          "first": "Luigi",
+          "second": "Mario",
+          "third": "Daisy"
+        }
+    }
+  ]
+}
+```
+// just top 3 for brevity 
+// grand prix summary will have winner, runner up, third place 
+
+

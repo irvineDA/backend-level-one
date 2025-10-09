@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/characters")
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class CharacterController {
         return ResponseEntity.ok(characterService.getCharacter(characterName));
     }
 
-    @PostMapping("/saveAll")
+    @PostMapping("/save-all")
     public ResponseEntity<Void> saveDefaultCharacters() {
         characterService.saveDefaultCharacters();
         return ResponseEntity.noContent().build();
@@ -41,7 +40,7 @@ public class CharacterController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/deleteAll")
+    @DeleteMapping("/delete-all")
     public ResponseEntity<Void> deleteAllCharacters() {
         characterService.deleteAllCharacters();
         return ResponseEntity.noContent().build();

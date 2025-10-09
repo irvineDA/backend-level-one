@@ -24,7 +24,7 @@ public class TrackController {
         return ResponseEntity.ok(TrackService.getTrack(TrackName));
     }
 
-    @PostMapping("/saveAll")
+    @PostMapping("/save-all")
     public ResponseEntity<Void> saveDefaultTracks() {
         TrackService.saveDefaultTracks();
         return ResponseEntity.noContent().build();
@@ -41,7 +41,7 @@ public class TrackController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/deleteAll")
+    @DeleteMapping("/delete-all")
     public ResponseEntity<Void> deleteAllTracks() {
         TrackService.deleteAllTracks();
         return ResponseEntity.noContent().build();
