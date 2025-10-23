@@ -3,11 +3,15 @@ package com.da_learn.backend.level.one.service;
 import com.da_learn.backend.level.one.exception.handler.TrackNotFoundException;
 import com.da_learn.backend.level.one.model.TrackEntity;
 import com.da_learn.backend.level.one.repository.TrackRepository;
+import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -19,6 +23,26 @@ public class TrackService {
     public Iterable<TrackEntity> getAllTracks() {
         log.info("Fetching all Tracks");
         return TrackRepository.findAll();
+    }
+
+    public ArrayList<TrackEntity> getRandomTracks(int count) {
+        log.info("Retrieving {} random tracks", count);
+
+        List<TrackEntity> allTracks = Lists.newArrayList(getAllTracks());
+
+        if (allTracks.isEmpty()) {
+            throw new IllegalStateException("No tracks available");
+        }
+
+        ArrayList<TrackEntity> result = new ArrayList<>();
+        Collections.shuffle(allTracks);
+
+        // Add tracks, repeating the list if necessary
+        for (int i = 0; i < count; i++) {
+            result.add(allTracks.get(i % allTracks.size()));
+        }
+
+        return result;
     }
 
     public TrackEntity getTrack(String name) {

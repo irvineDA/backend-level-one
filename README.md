@@ -136,35 +136,8 @@ Ready? Let's go!
 
 
 TODO:
-implement grandprix logic fully then remove bits // comment out so no compile issues
-- takes the characters, difficulty rating and tracks 
-- randomises the order of tracks and then for each track, randomises the order of characters
-- the order of characters will then be weighted to give characters points for winning
-- the points will then be totalled and the character with the most points at the end of the grand prix is winner
-- return a summary of the grand prix with winner
-
-json response will have 
-raceOutcomes:
-```json
-{
-  "grandPrixSummary": {
-    "winner": "Mario",
-    "totalPoints": 25
-  },
-  "raceOutcomes": [
-    {
-      "trackName": "Moo Moo Meadows",
-      "results": 
-        {
-          "first": "Luigi",
-          "second": "Mario",
-          "third": "Daisy"
-        }
-    }
-  ]
-}
-```
-// just top 3 for brevity 
-// grand prix summary will have winner, runner up, third place 
-
+- tutorial piece for grand prix logic
+- will we have the service and controller commented out with bits missing? 
+- have comments in the actual code to guide them through
+- maybe have them built the dtos too?
 

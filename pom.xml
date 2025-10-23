@@ -19,6 +19,7 @@
 		<java.version>21</java.version>
 		<flyway.postgres.version>10.15.0</flyway.postgres.version>
 		<hibernate.jpamodelgen.version>6.4.10.Final</hibernate.jpamodelgen.version>
+		<guava.version>33.5.0-jre</guava.version>
 	</properties>
 
 	<dependencies>
@@ -76,6 +77,11 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
 			<version>${flyway.postgres.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 	</dependencies>
 
